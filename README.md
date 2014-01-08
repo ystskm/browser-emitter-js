@@ -2,7 +2,7 @@
   
 [![Build status](https://travis-ci.org/ystskm/browser-emitter-js.png)](https://travis-ci.org/ystskm/browser-emitter-js)  
   
-Simple Event Emitter for browser. Using dom as the agent of events.
+Simple Event Emitter for browser. Using object as the agent of events.
 You can use this both node and browsers.
 
 ## Install

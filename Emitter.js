@@ -6,26 +6,14 @@
   win.Emitter = Emitter;
 
   function Emitter() {
-
-    var self = this;
-    this._eve = 'click', this._events = {};
-    this._via = document.createElement('div');
-
-    this._via.onclick = function() {
-      var type = self._type, args = self._args;
-      delete self._type, delete self._args, (function(handlers) {
-        Array.isArray(handlers) && handlers.forEach(function(fn) {
-          fn.apply(self, args);
-        });
-      })(self._events[type]);
-    };
-
+    this._events = {};
   }
 
   var EmitterProtos = {
     on: on,
     off: off,
-    emit: emit
+    emit: emit,
+    fire: fire
   };
   for( var i in EmitterProtos)
     Emitter.prototype[i] = EmitterProtos[i];
@@ -68,10 +56,20 @@
       throw new Error('[Emitter.js] emit event under unexpected condition.');
 
     this._type = type, this._args = args;
-    self._via.click();
+    self.fire();
 
     return this;
 
+  }
+
+  function fire() {
+    var self = this;
+    var type = self._type, args = self._args;
+    delete self._type, delete self._args, (function(handlers) {
+      Array.isArray(handlers) && handlers.forEach(function(fn) {
+        fn.apply(self, args);
+      });
+    })(self._events[type]);
   }
 
 })(window);

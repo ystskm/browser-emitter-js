@@ -3,12 +3,10 @@ var jsdom = require("jsdom");
 var repo = 'https://raw.github.com/ystskm/browser-emitter-js/';
 
 function setup(callback) {
-  jsdom.env('<html><head></head><body></body></head>', {
-    scripts: [repo + "master/Emitter.js"],
-    done: function(errors, window) {
-      errors && console.error(errors);
-      callback(window);
-    }
+  jsdom.env("<html><head></head><body></body></html>", {
+    scripts: [repo + "master/Emitter.js"]
+  }, function(errors, window) {
+    errors && console.error(errors), callback(window);
   });
 }
 
