@@ -31,7 +31,7 @@ Install with [npm](http://npmjs.org/):
 </script>
 ```
 
-## if you want to inhert Emitter to another *class*, use prototype chain!
+## if you want to inherit Emitter to another *class*, use prototype chain!
 
     var MyClass = function(){
       this.__proto__.__proto__ = new Emitter();
