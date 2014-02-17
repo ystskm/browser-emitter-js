@@ -31,9 +31,17 @@ Install with [npm](http://npmjs.org/):
 </script>
 ```
 
-## if you want to inherit Emitter to another *class*, use prototype chain!
+## if you want to inherit Emitter to another *class*, use prototype chain.
 
+    // for Singleton
     var MyClass = function(){
       this.__proto__.__proto__ = new Emitter();
     }
+    
+    // for Factory
+    var MyClass = function(){
+      Emitter.prototype.constructor.call(this);
+    }
+    for(var i in Emitter.prototype)
+      MyClass.prototype[i] = Emitter.prototype[i];
     
