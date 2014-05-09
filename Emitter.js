@@ -37,6 +37,12 @@
   function off(type, args) {
 
     var self = this, splice_pos = 0;
+    if(type == null) {
+      for( var i in this._events)
+        delete this._events[i];
+      return this;
+    }
+
     while(splice_pos < this._events[type].length) {
       var stat = this._events[type][splice_pos];
       typeof args[0] != 'function' || args[0] === stat.fn ? (function() {
