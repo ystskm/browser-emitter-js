@@ -1,5 +1,6 @@
 # browser-emitter
   
+[![Version](https://badge.fury.io/js/browser-emitter.png)](https://npmjs.org/package/browser-emitter)
 [![Build status](https://travis-ci.org/ystskm/browser-emitter-js.png)](https://travis-ci.org/ystskm/browser-emitter-js)  
   
 Simple Event Emitter for browser. Using object as the agent of events.
@@ -40,7 +41,7 @@ Install with [npm](http://npmjs.org/):
     
     // for Factory
     var MyClass = function(){
-      Emitter.prototype.constructor.call(this);
+      Emitter.call(this);
     }
     for(var i in Emitter.prototype)
       MyClass.prototype[i] = Emitter.prototype[i];
