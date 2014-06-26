@@ -3,7 +3,7 @@
 (function(has_win, has_mod) {
 
   has_mod && (module.exports = Emitter);
-  has_win && (win.Emitter = Emitter);
+  has_win && (window.Emitter = Emitter);
 
   function Emitter() {
     this._events = {};
