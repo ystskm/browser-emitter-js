@@ -1,9 +1,9 @@
 /***/
 // [browser-emitter-js] Emitter.js
-(function(win) {
+(function(has_win, has_mod) {
 
-  typeof module != 'undefined' && (module.exports = Emitter);
-  win.Emitter = Emitter;
+  has_mod && (module.exports = Emitter);
+  has_win && (win.Emitter = Emitter);
 
   function Emitter() {
     this._events = {};
@@ -81,4 +81,4 @@
     };
   }
 
-})(window);
+})(typeof window != 'undefined', typeof module != 'undefined');
