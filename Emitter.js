@@ -58,10 +58,12 @@
   function emit(type, args) {
 
     var self = this, splice_pos = 0;
-    while(splice_pos < this._events[type].length) {
-      var stat = this._events[type][splice_pos];
+    var evts = this._events;
+    // emit event occasionally off all type of events
+    while(evts[type] && splice_pos < evts[type].length) {
+      var stat = evts[type][splice_pos];
       stat.fn.apply(this, args), stat.once ? (function() {
-        self._events[type].splice(splice_pos, 1);
+        evts[type].splice(splice_pos, 1);
       })(): splice_pos++;
     }
 
