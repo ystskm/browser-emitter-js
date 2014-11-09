@@ -14,10 +14,12 @@ Install with [npm](http://npmjs.org/):
     
 ## API - Set functions by args
 
+```js
     var Emitter = require('browser-emitter');
     var emitter = new Emitter();
     emitter.on('hoge', function(){ console.log(arguments) });
     emitter.emit('hoge', 'a', 'b', 'c'); // => 'a', 'b', 'c'
+```
 
 ### also use on browser
 
@@ -34,6 +36,7 @@ Install with [npm](http://npmjs.org/):
 
 ## if you want to inherit Emitter to another *class*, use prototype chain.
 
+```js
     // for Factory
     var SubClass = function(){
       Emitter.call(this);
@@ -45,4 +48,4 @@ Install with [npm](http://npmjs.org/):
     var SubClass = function(){
       this.__proto__.__proto__ = new Emitter();
     }
-    
+```
