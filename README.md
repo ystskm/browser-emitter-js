@@ -1,5 +1,7 @@
 # browser-emitter
   
+[![Rank](https://nodei.co/npm/browser-emitter.png?downloads=true&amp;downloadRank=true&amp;stars=true)](https://nodei.co/npm/browser-emitter/)  
+  
 [![Version](https://badge.fury.io/js/browser-emitter.png)](https://npmjs.org/package/browser-emitter)
 [![Build status](https://travis-ci.org/ystskm/browser-emitter-js.png)](https://travis-ci.org/ystskm/browser-emitter-js)  
   
