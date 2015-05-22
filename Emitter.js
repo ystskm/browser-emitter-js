@@ -1,13 +1,31 @@
-/***/
-// [browser-emitter-js] Emitter.js
+/**
+ * [browser-emitter-js] Emitter.js
+ * Copyright (c) 2013 Yoshitaka Sakamoto <brilliantpenguin@gmail.com> 
+ * See license: https://github.com/ystskm/browser-emitter-js/blob/master/LICENSE
+ */
 (function(has_win, has_mod) {
 
+  var exports;
+  if(has_win) {
+    // browser, emulated window
+    exports = window;
+  } else {
+    // raw Node.js, web-worker
+    exports = typeof self == 'undefined' ? this: self;
+  }
+
   has_mod && (module.exports = Emitter);
-  has_win && (window.Emitter = Emitter);
+  exports.Emitter = Emitter;
 
   function Emitter() {
     this._events = {};
   }
+
+  var EmitterProps = {
+    inherits: inherits
+  };
+  for( var i in EmitterProps)
+    Emitter[i] = EmitterProps[i];
 
   var EmitterProtos = {
     on: on,
@@ -75,6 +93,11 @@
     return this._events[type].length;
   }
 
+  function inherits(Super) {
+    for( var i in Emitter.prototype)
+      Super.prototype[i] = Emitter.prototype[i];
+  }
+
   function _wrap(fn) {
     return function() {
       var args = Array.prototype.slice.call(arguments), type = args.shift();
@@ -83,4 +106,4 @@
     };
   }
 
-})(typeof window != 'undefined', typeof module != 'undefined');
+}).call(this, typeof window != 'undefined', typeof module != 'undefined');

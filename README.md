@@ -43,11 +43,5 @@ Install with [npm](http://npmjs.org/):
     var SubClass = function(){
       Emitter.call(this);
     }
-    for(var i in Emitter.prototype)
-      SubClass.prototype[i] = Emitter.prototype[i];
-
-    // for Singleton (not recommended)
-    var SubClass = function(){
-      this.__proto__.__proto__ = new Emitter();
-    }
+    Emitter.inherits(SubClass);
 ```
