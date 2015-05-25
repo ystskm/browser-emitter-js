@@ -55,37 +55,51 @@
   function off(type, args) {
 
     var self = this, splice_pos = 0;
+    var evts = this._events;
     if(type == null) {
-      for( var i in this._events)
-        delete this._events[i];
+      for( var i in evts)
+        delete evts[i];
       return this;
     }
 
-    while(splice_pos < this._events[type].length) {
-      var stat = this._events[type][splice_pos];
+    while(splice_pos < evts[type].length) {
+      var stat = evts[type][splice_pos];
       typeof args[0] != 'function' || args[0] === stat.fn ? (function() {
-        self._events[type].splice(splice_pos, 1);
+        evts[type].splice(splice_pos, 1);
       })(): splice_pos++;
     }
 
-    this._events[type].length == 0 && delete this._events[type];
+    if(evts[type]) {
+      // occasionally already deleted (another .off() called)
+      evts[type].length == 0 && delete evts[type];
+    }
     return this;
 
   }
 
   function emit(type, args) {
 
-    var self = this, splice_pos = 0;
-    var evts = this._events;
+    var emitter = this, splice_pos = 0;
+    var evts = emitter._events, handlers = [];
+
     // emit event occasionally off all type of events
     while(evts[type] && splice_pos < evts[type].length) {
       var stat = evts[type][splice_pos];
-      stat.fn.apply(this, args), stat.once ? (function() {
+      handlers.push(stat.fn), stat.once ? (function() {
         evts[type].splice(splice_pos, 1);
       })(): splice_pos++;
     }
 
-    return this;
+    if(evts[type]) {
+      // occasionally already deleted (.off() called)
+      evts[type].length || delete evts[type];
+    }
+
+    handlers.forEach(function(fn) {
+      fn.apply(emitter, args);
+    });
+
+    return emitter;
 
   }
 
