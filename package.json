@@ -12,7 +12,7 @@
   "devDependencies": {
     "nodeunit": "*",
     "nodeunit-ci": "*",
-    "jsdom": "*"
+    "jsdom": "3.1.1"
   },
   "keywords": ["util","async","pipe","chain","function"],
   "main": "Emitter.js",
