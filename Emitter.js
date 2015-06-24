@@ -104,7 +104,7 @@
   }
 
   function listeners(type) {
-    return this._events[type].length;
+    return type ? this._events[type]: this._events;
   }
 
   function inherits(Super) {
