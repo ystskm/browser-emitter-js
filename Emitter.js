@@ -104,7 +104,7 @@
   }
 
   function listeners(type) {
-    return type == null ? this._events[type]: this._events;
+    return type == null ? this._events: this._events[type];
   }
 
   function inherits(Super) {
